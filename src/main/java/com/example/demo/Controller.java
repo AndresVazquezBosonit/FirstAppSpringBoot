@@ -14,10 +14,11 @@ public class Controller {
   }
 
   @RequestMapping(value = "/useradd", method = RequestMethod.POST, consumes = "application/json")
-  public User postUserAdd (@RequestBody User user){
+  public User postUserAdd(@RequestBody User user) {
+    user.setAge(user.getAge() + 1);
     return user;
-  };
-
+  }
+  ;
 
   // Using java.util.Optional
   /*
