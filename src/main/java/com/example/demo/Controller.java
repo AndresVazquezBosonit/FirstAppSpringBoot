@@ -1,31 +1,26 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController()
 public class Controller {
-  /*
-  @GetMapping("/user/{username}")
-  @ResponseBody
-  public String getUser(@PathVariable("username") String userName) {
-    return "The user is:  " + userName;
-  }
-  */
 
-  // multiple Path variables in a single Requests
-  @GetMapping("/user/{username}/{id}")
+  @GetMapping("/user/{user}")
   @ResponseBody
-  public String getUserAndId(
-      @PathVariable("username") String userName, @PathVariable("id") String id) {
-    return "The username is:  " + userName + " and ID is: " + id;
+  public String getUser(@PathVariable("user") String user) {
+    return "Hola:  " + user;
   }
+
+  @RequestMapping(value = "/useradd", method = RequestMethod.POST, consumes = "application/json")
+  public User postUserAdd (@RequestBody User user){
+    return user;
+  };
+
 
   // Using java.util.Optional
+  /*
   @GetMapping(value = {"/user/", "/user/{username}"})
   @ResponseBody
   public String getUserOptional(@PathVariable("username") Optional<String> userName) {
@@ -36,8 +31,5 @@ public class Controller {
     }
   }
 
-  @GetMapping("/about")
-  public String getAbout() {
-    return "About";
-  }
+   */
 }
